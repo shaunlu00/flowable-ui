@@ -1,0 +1,57 @@
+flowable:
+  common:
+    app:
+      role-prefix:
+  idm:
+    app:
+      admin:
+        email: admin@flowable.org
+        first-name: Test
+        last-name: Administrator
+        password: test
+        user-id: admin
+      rest-enabled: true
+      security:
+        remember-me-key: testkey
+  rest:
+    app:
+      authentication-mode: verify-privilege
+management:
+  endpoint:
+    health:
+      roles: access-admin
+      show-details: when_authorized
+  endpoints:
+    jmx:
+      unique-names: true
+    web:
+      exposure:
+        include: '*'
+server:
+  port: 8080
+  servlet:
+    context-path: /flowable-idm
+spring:
+  aop:
+    auto: false
+    proxy-target-class: false
+  application:
+    name: flowable-ui-idm
+  banner:
+    location: classpath:/org/flowable/spring/boot/flowable-banner.txt
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/bpm?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&allowMultiQueries=true&serverTimezone=Asia/Shanghai
+    password: bpm
+    username: bpm
+    hikari:
+      idleTimeout: 300000
+      maxLifetime: 600000
+      maximumPoolSize: 50
+      minimumIdle: 5
+      poolName: ${spring.application.name}
+  jmx:
+    default-domain: ${spring.application.name}
+  security:
+    filter:
+      dispatcher-types: REQUEST,FORWARD,ASYNC

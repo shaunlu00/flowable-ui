@@ -1,0 +1,118 @@
+spring:
+  aop:
+    auto: false
+    proxy-target-class: false
+  application:
+    name: flowable-ui-admin
+  banner:
+    location: classpath:/org/flowable/spring/boot/flowable-banner.txt
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/bpm?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&allowMultiQueries=true&serverTimezone=Asia/Shanghai
+    password: bpm
+    username: bpm
+    hikari:
+      idleTimeout: 300000
+      maxLifetime: 600000
+      maximumPoolSize: 50
+      minimumIdle: 5
+      poolName: ${spring.application.name}
+  jmx:
+    default-domain: ${spring.application.name}
+  liquibase:
+    enabled: false
+  security:
+    filter:
+      dispatcher-types: REQUEST,FORWARD,ASYNC
+  servlet:
+    multipart:
+      max-file-size: 10MB
+
+server:
+  port: 8080
+  servlet:
+    context-path: /flowable-admin
+
+
+flowable:
+  admin:
+    app:
+      security:
+        encryption:
+          credentials-i-v-spec: j8kdO2hejA9lKmm6
+          credentials-secret-spec: 9FGl73ngxcOoJvmL
+      server-config:
+        app:
+          context-root: flowable-task
+          description: Flowable App REST config
+          name: Flowable App app
+          password: test
+          port: 8080
+          rest-root: app-api
+          server-address: http://localhost
+          user-name: admin
+        cmmn:
+          context-root: flowable-task
+          description: Flowable CMMN REST config
+          name: Flowable CMMN app
+          password: test
+          port: 8080
+          rest-root: cmmn-api
+          server-address: http://localhost
+          user-name: admin
+        content:
+          context-root: flowable-task
+          description: Flowable Content REST config
+          name: Flowable Content app
+          password: test
+          port: 8080
+          rest-root: content-api
+          server-address: http://localhost
+          user-name: admin
+        dmn:
+          context-root: flowable-task
+          description: Flowable DMN REST config
+          name: Flowable DMN app
+          password: test
+          port: 8080
+          rest-root: dmn-api
+          server-address: http://localhost
+          user-name: admin
+        form:
+          context-root: flowable-task
+          description: Flowable Form REST config
+          name: Flowable Form app
+          password: test
+          port: 8080
+          rest-root: form-api
+          server-address: http://localhost
+          user-name: admin
+        process:
+          context-root: flowable-task
+          description: Flowable Process REST config
+          name: Flowable Process app
+          password: test
+          port: 8080
+          rest-root: process-api
+          server-address: http://localhost
+          user-name: admin
+  common:
+    app:
+      idm-admin:
+        password: test
+        user: admin
+      idm-url: http://localhost:8080/flowable-idm
+      role-prefix: ''
+
+
+management:
+  endpoint:
+    health:
+      roles: access-admin
+      show-details: when_authorized
+  endpoints:
+    jmx:
+      unique-names: true
+    web:
+      exposure:
+        include: '*'
